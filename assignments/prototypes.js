@@ -144,4 +144,69 @@ Humanoid.prototype.greet = function() {
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
 
+  Humanoid.prototype.attack = function(enemy) {
+    enemy.healthPoints--;
+    if (enemy.hitPoints <= 0) {
+      return enemy.destroy();
+    } else {
+      return `${enemy.takeDamage()} Health Points: ${enemy.healthPoints}`;
+    }
+  };
+  
+  function Villain(enemy1) {
+    Humanoid.call(this, enemy1);
+  }
+  Villain.prototype = Object.create(Humanoid.prototype);
+  
+  function Hero(enemy2) {
+    Humanoid.call(this, enemy2);
+  }
+  Hero.prototype = Object.create(Humanoid.prototype);
+  
+  const Hulk = new Villain({
+    createdAt: new Date(),
+    dimensions: {
+      length: 60,
+      width: 50,
+      height: 50
+    },
+    healthPoints: 1000,
+    name: "Hulk",
+    team: "Avengers",
+    weapons: ["Fists", "Hulk Smash"],
+    language: "unknown"
+  });
+  
+  const Thor = new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 20,
+      width: 30,
+      height: 30
+    },
+    healthPoints: 1000,
+    name: "Thor",
+    team: "Avengers",
+    weapons: ["Hammer", "Lightning"],
+    language: "unknown"
+  });
+  
+  function fight(hero, villain) {
+    while (hero.healthPoints > 0 && villain.healthPoints > 0) {
+      const heroAttacks = Math.random() > 0.2;
+  
+      if (heroAttacks) {
+        console.log(hero.attack(villain));
+      } else {
+        console.log(villain.attack(hero));
+      }
+    }
+  
+    if (hero.healthPoints > 0) {
+      return `Winner: ${hero.name}`;
+    } else {
+      return `Winner: ${villain.name}`;
+    }
+  }
+  console.log(fight(Hulk, Thor));
   
