@@ -55,9 +55,9 @@ function marvelCharacter(firstName, lastName) {
   }
   const guardians = new marvelCharacter("Peter", "Quill");
   const doctorStrange = new marvelCharacter("Steven", "Strange");
-  const phoenix = new marvelCharacter("Jean", "Grey");
+  const xmen = new marvelCharacter("Jean", "Grey");
   const ironMan = new marvelCharacter("Tony", "Stark");
-  phoenix.fullName();
+  xmen.fullName();
 
 
 // Principle 4
