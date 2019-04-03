@@ -146,7 +146,7 @@ Humanoid.prototype.greet = function() {
 
   Humanoid.prototype.attack = function(enemy) {
     enemy.healthPoints--;
-    if (enemy.hitPoints <= 0) {
+    if (enemy.healthPoints <= 0) {
       return enemy.destroy();
     } else {
       return `${enemy.takeDamage()} Health Points: ${enemy.healthPoints}`;
@@ -173,7 +173,7 @@ Humanoid.prototype.greet = function() {
     healthPoints: 1000,
     name: "Hulk",
     team: "Avengers",
-    weapons: ["Fists", "Hulk Smash"],
+    weapons: ["Hulk Smash"],
     language: "unknown"
   });
   
@@ -193,7 +193,7 @@ Humanoid.prototype.greet = function() {
   
   function fight(hero, villain) {
     while (hero.healthPoints > 0 && villain.healthPoints > 0) {
-      const heroAttacks = Math.random() > 0.2;
+      const heroAttacks = Math.random() > 0.3;
   
       if (heroAttacks) {
         console.log(hero.attack(villain));
